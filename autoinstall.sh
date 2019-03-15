@@ -10,14 +10,14 @@ die() {
     exit 1
 }
 
-install_vimrc () {
-    [ -e "$INSTALL_TO/vimrc" ] && die "$INSTALL_TO/vimrc already exists."
+install_myconfig () {
+    [ -e "$INSTALL_TO/myconfig" ] && die "$INSTALL_TO/myconfig already exists."
     [ -e "~/.vim" ] && die "~/.vim already exists."
     [ -e "~/.vimrc" ] && die "~/.vimrc already exists."
 
     cd "$INSTALL_TO"
-    git clone git://github.com/nvie/vimrc.git
-    cd vimrc
+    git clone https://github.com/Flo-mrt/myconfig.git
+    cd myconfig
 
     # Download vim plugin bundles
     git submodule init
@@ -25,11 +25,10 @@ install_vimrc () {
 
     # Symlink ~/.vim and ~/.vimrc
     cd ~
-    ln -s "$INSTALL_TO/vimrc/vimrc" .vimrc
-    ln -s "$INSTALL_TO/vimrc/vim" .vim
-    touch ~/.vim/user.vim
+    ln -s "$INSTALL_TO/myconfig/.vimrc" .vimrc
+    ln -s "$INSTALL_TO/myconfig/vim" .vim
 
     echo "Installed and configured .vim, have fun."
 }
 
-install_vimrc
+install_myconfig

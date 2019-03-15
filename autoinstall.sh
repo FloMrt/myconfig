@@ -25,8 +25,8 @@ install_myconfig () {
 
     # Symlink ~/.vim and ~/.vimrc
     cd ~
-    ln -s "$INSTALL_TO/myconfig/.vimrc" .vimrc
-    ln -s "$INSTALL_TO/myconfig/vim" .vim
+    #ln -s "$INSTALL_TO/myconfig/.vimrc" .vimrc
+    #ln -s "$INSTALL_TO/myconfig/vim" .vim
 
     echo "Installed and configured .vim, have fun."
 }

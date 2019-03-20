@@ -6,6 +6,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 call plug#end()
 syntax on
 filetype plugin indent on
+set clipboard=unnamedplus
 
 " color scheme
 set background=dark

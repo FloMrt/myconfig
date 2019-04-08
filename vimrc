@@ -31,7 +31,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" python-mode plugin
+" Python
 let g:pymode_python = 'python3'
 let g:pymode_options_max_line_length = 125
 let g:pymode_rope = 1
@@ -40,3 +40,6 @@ let g:pymode_rope_complete_on_dot = 0
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='simple'
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1

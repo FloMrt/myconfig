@@ -1,5 +1,5 @@
 #!/bin/sh
-INSTALL_TO=~
+INSTALL_TO=~/Projects
 
 warn() {
     echo "$1" >&2
@@ -25,10 +25,10 @@ install_myconfig () {
 
     # Symlink ~/.vim and ~/.vimrc
     cd ~
-    #ln -s "$INSTALL_TO/myconfig/vimrc" .vimrc
-    #ln -s "$INSTALL_TO/myconfig/vim" .vim
-    #ln -s "$INSTALL_TO/myconfig/tmux.conf" .tmux.conf
-    #ln -s "$INSTALL_TO/myconfig/tmux.conf.local" .tmux.conf.local
+    ln -s "$INSTALL_TO/myconfig/vimrc" .vimrc
+    ln -s "$INSTALL_TO/myconfig/vim" .vim
+    ln -s "$INSTALL_TO/myconfig/tmux.conf" .tmux.conf
+    ln -s "$INSTALL_TO/myconfig/tmux.conf.local" .tmux.conf.local
 
     echo "Installed and configured .vim and .tmux, have fun."
 }

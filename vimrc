@@ -36,6 +36,7 @@ let g:pymode_python = 'python3'
 let g:pymode_options_max_line_length = 125
 let g:pymode_rope = 0
 let g:pymode_folding = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='simple'

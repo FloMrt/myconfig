@@ -1,6 +1,4 @@
 set nocp
-execute pathogen#infect()
-execute pathogen#helptags()
 
 call plug#begin()
 Plug '/usr/local/bin/fzf'

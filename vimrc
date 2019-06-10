@@ -1,9 +1,25 @@
 set nocp
 execute pathogen#infect()
 execute pathogen#helptags()
+
 call plug#begin()
+Plug '/usr/local/bin/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'leafgarland/typescript-vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-syntastic/syntastic'
+Plug 'jason0x43/vim-js-indent'
 call plug#end()
+
 syntax on
 filetype plugin indent on
 set clipboard=unnamedplus
@@ -18,10 +34,10 @@ let g:palenight_terminal_italics=1
 set number
 
 " NERDTree configuration
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeShowHidden = 1
+" let NERDTreeShowHidden = 1
 
 " Splitting configuration
 nnoremap <C-J> <C-W><C-J>
@@ -43,3 +59,6 @@ let g:airline_theme='simple'
 
 " Javascript
 let g:javascript_plugin_jsdoc = 1
+
+" fzf
+set rtp+=/usr/local/bin/fzf

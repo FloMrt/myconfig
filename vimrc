@@ -14,7 +14,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'leafgarland/typescript-vim'
 Plug 'Valloric/YouCompleteMe'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'jason0x43/vim-js-indent'
 call plug#end()
 

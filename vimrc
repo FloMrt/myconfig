@@ -13,9 +13,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'Valloric/YouCompleteMe'
 Plug 'w0rp/ale'
-Plug 'jason0x43/vim-js-indent'
 call plug#end()
 
 syntax on

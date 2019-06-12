@@ -11,11 +11,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'Valloric/YouCompleteMe'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -25,7 +28,7 @@ set clipboard=unnamedplus
 
 " color scheme
 set background=dark
-colorscheme palenight
+colorscheme challenger_deep
 let g:palenight_terminal_italics=1
 "colorscheme molokai
 

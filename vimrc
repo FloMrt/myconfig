@@ -158,6 +158,7 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " === Vim airline ==== "
+try
 " Enable extensions
 let g:airline_extensions = ['branch', 'hunks', 'coc']
 " Update section z to just have line number
@@ -201,7 +202,7 @@ let g:jsx_ext_required = 0
 set termguicolors
 
 " Vim airline theme
-let g:airline_theme='space'
+let g:airline_theme='simple'
 " color scheme
 set background=dark
 colorscheme kuroi

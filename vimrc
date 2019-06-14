@@ -63,7 +63,6 @@ call plug#end()
 " ============================================================================ "
 
 set nocp
-syntax on
 " Don't show last command
 set noshowcmd
 " Yank and paste with the system clipboard
@@ -138,9 +137,9 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " === NeoSnippet === "
 " Map <C-k> as shortcut to activate snippet if available
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+imap <leader>s <Plug>(neosnippet_expand_or_jump)
+smap <leader>s <Plug>(neosnippet_expand_or_jump)
+xmap <leader>s <Plug>(neosnippet_expand_target)
 " Load custom snippets from snippets folder
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 " Hide conceal markers
@@ -202,10 +201,10 @@ let g:jsx_ext_required = 0
 set termguicolors
 
 " Vim airline theme
-let g:airline_theme='simple'
+let g:airline_theme='onedark'
 " color scheme
 set background=dark
-colorscheme kuroi
+colorscheme palenight
 let g:palenight_terminal_italics=1
 " Set preview window to appear at bottom
 set splitbelow

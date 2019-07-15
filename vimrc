@@ -71,7 +71,12 @@ set clipboard=unnamedplus
 set expandtab
 " only one line for command line
 set cmdheight=1
-
+" a tab is four spaces
+set tabstop=4
+" number of spaces to use for autoindenting
+set shiftwidth=4
+" set show matching parenthesis
+set showmatch
 " === Completion Settings === "
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
@@ -160,10 +165,7 @@ set termguicolors
 
 " Vim airline theme
 let g:airline_theme='onedark'
-" color scheme
-set background=dark
-colorscheme palenight
-let g:palenight_terminal_italics=1
+
 " Set preview window to appear at bottom
 set splitbelow
 " Don't dispay mode in command line (airilne already shows it)
@@ -196,6 +198,10 @@ set autoread
 
 " Enable line numbers
 set number
+                        
+set undolevels=1000      " use many muchos levels of undo
+set visualbell           " don't beep
+set noerrorbells         " don't beep
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -213,6 +219,11 @@ nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
 " === coc.nvim === "
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
+nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>cr <Plug>(coc-references)
+nmap <silent> <leader>ci <Plug>(coc-implementation)
+
+" color scheme
+set background=dark
+colorscheme palenight
+let g:palenight_terminal_italics=1

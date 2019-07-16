@@ -198,6 +198,7 @@ set autoread
 
 " Enable line numbers
 set number
+set relativenumber
                         
 set undolevels=1000      " use many muchos levels of undo
 set visualbell           " don't beep

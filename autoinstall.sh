@@ -19,10 +19,6 @@ install_myconfig () {
     git clone https://github.com/Flo-mrt/myconfig.git
     cd myconfig
 
-    # Download vim plugin bundles
-    git submodule init
-    git submodule update
-
     # Symlink ~/.vim and ~/.vimrc
     cd ~
     ln -s "$INSTALL_TO/myconfig/vimrc" .vimrc

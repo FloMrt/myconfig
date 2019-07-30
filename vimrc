@@ -34,13 +34,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " === Languages Plugins === "
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
 
 " === Editing Plugins === "
 " Intellisense Engine
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " CtrlP - Fuzzy finding, buffer management
 Plug 'ctrlpvim/ctrlp.vim'
 " Snippet support

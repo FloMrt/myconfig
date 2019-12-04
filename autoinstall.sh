@@ -23,10 +23,8 @@ install_myconfig () {
     cd ~
     ln -s "$INSTALL_TO/myconfig/vimrc" .vimrc
     ln -s "$INSTALL_TO/myconfig/vim" .vim
-    ln -s "$INSTALL_TO/myconfig/tmux.conf" .tmux.conf
-    ln -s "$INSTALL_TO/myconfig/tmux.conf.local" .tmux.conf.local
 
-    echo "Installed and configured .vim and .tmux, have fun."
+    echo "Installed and configured, have fun."
 }
 
 install_myconfig

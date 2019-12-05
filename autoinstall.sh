@@ -21,8 +21,12 @@ install_myconfig () {
 
     # Symlink ~/.vim and ~/.vimrc
     cd ~
-    ln -s "$INSTALL_TO/myconfig/vimrc" .vimrc
-    ln -s "$INSTALL_TO/myconfig/vim" .vim
+    ln -s "$INSTALL_TO/myconfig/vimrc" ~/.vimrc
+    ln -s "$INSTALL_TO/myconfig/vim" ~/.vim
+    ln -s "$INSTALL_TO/myconfig/fish" ~/.config/fish
+    ln -s "$INSTALL_TO/myconfig/omf" ~/.config/omf
+    ln -s "$INSTALL_TO/myconfig/i3" ~/.config/i3
+    ln -s "$INSTALL_TO/myconfig/polybar" ~/.config/polybar
 
     echo "Installed and configured, have fun."
 }

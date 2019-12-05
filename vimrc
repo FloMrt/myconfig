@@ -38,7 +38,7 @@ Plug 'sheerun/vim-polyglot'
 
 " === Editing Plugins === "
 " Intellisense Engine
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " CtrlP - Fuzzy finding, buffer management
 Plug 'ctrlpvim/ctrlp.vim'
 " Snippet support

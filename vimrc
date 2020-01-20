@@ -25,8 +25,6 @@ call plug#begin()
 " === UI === "
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'aonemd/kuroi.vim'
 " File tree
 Plug 'scrooloose/nerdtree'
 " Statusline

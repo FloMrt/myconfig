@@ -23,36 +23,36 @@ endif
 call plug#begin()
 
 " === UI === "
-" Themes
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'jacoborus/tender.vim'
+" Icons
+Plug 'kyazdani42/nvim-web-devicons'
 " File tree
-Plug 'scrooloose/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
 " Statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" === Languages Plugins === "
-Plug 'sheerun/vim-polyglot'
-
 " === Editing Plugins === "
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" CtrlP - Fuzzy finding, buffer management
-Plug 'ctrlpvim/ctrlp.vim'
-" Snippet support
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 " Surround editing
 Plug 'tpope/vim-surround'
+" Synthax Highligh
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Comments
+Plug 'preservim/nerdcommenter'
+
+" === Search Plugins === "
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
-
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -81,6 +81,29 @@ set shortmess+=c
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
+
+" === Nvim Tree + Icons === "
+lua require'nvim-web-devicons'.setup()
+lua require'nvim-tree'.setup()
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
+let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
+let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+let g:nvim_tree_create_in_closed_folder = 1 "0 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
+let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 1,
+    \ 'folder_arrows': 0,
+    \ }
+highlight NvimTreeFolderIcon guibg=blue
+
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
@@ -93,27 +116,6 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" === NeoSnippet === "
-" Map <C-k> as shortcut to activate snippet if available
-imap <leader>s <Plug>(neosnippet_expand_or_jump)
-smap <leader>s <Plug>(neosnippet_expand_or_jump)
-xmap <leader>s <Plug>(neosnippet_expand_target)
-" Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-" Hide conceal markers
-let g:neosnippet#enable_conceal_markers = 0
-
-" === NERDTree === "
-" Show hidden files/directories
-let g:NERDTreeShowHidden = 1
-" Remove bookmarks and help text from NERDTree
-let g:NERDTreeMinimalUI = 1
-" Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
-" Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " === Vim airline ==== "
 try
@@ -132,8 +134,6 @@ let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " Configure error/warning section to use coc.nvim
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-" Hide the Nerdtree status line to avoid clutter
-let g:NERDTreeStatusline = ''
 " Enable caching of syntax highlighting groups
 let g:airline_highlighting_cache = 1
 " Define custom airline symbols
@@ -147,10 +147,21 @@ catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
 
-" === vim-jsx === "
-" Highlight jsx syntax even in non .jsx files
-let g:jsx_ext_required = 0
-
+" === NERDComments ==== "
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -159,13 +170,18 @@ let g:jsx_ext_required = 0
 " Enable true color support
 set termguicolors
 
+" Color scheme
+syntax enable
+colorscheme tender
+
 " Vim airline theme
-let g:airline_theme='onedark'
+let g:airline_theme='tender'
 
 " Set preview window to appear at bottom
 set splitbelow
 " Don't dispay mode in command line (airilne already shows it)
 set noshowmode
+filetype plugin on
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
@@ -177,8 +193,6 @@ hi! LineNr ctermfg=NONE guibg=NONE
 hi! SignColumn ctermfg=NONE guibg=NONE
 hi! StatusLine guifg=#16252b guibg=#6699CC
 hi! StatusLineNC guifg=#16252b guibg=#16252b
-" Customize NERDTree directory
-hi! NERDTreeCWD guifg=#99c794
 
 " ============================================================================ "
 " ===                                 MISC.                                === "
@@ -209,18 +223,18 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+" === Tree shorcuts === "
+nnoremap <leader>n :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>f :NvimTreeFindFile<CR>
 
 " === coc.nvim === "
 nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>cr <Plug>(coc-references)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 
-" color scheme
-set background=dark
-colorscheme palenight
-let g:palenight_terminal_italics=1
+" === telescope === "
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>

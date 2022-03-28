@@ -1,5 +1,4 @@
 #!/bin/sh
-INSTALL_TO=~/Projects
 
 warn() {
     echo "$1" >&2
@@ -11,22 +10,18 @@ die() {
 }
 
 install_myconfig () {
-    [ -e "$INSTALL_TO/myconfig" ] && die "$INSTALL_TO/myconfig already exists."
-    [ -e "~/.vim" ] && die "~/.vim already exists."
-    [ -e "~/.vimrc" ] && die "~/.vimrc already exists."
+    [ -e "~/.config/myconfig" ] && die "~/.config/myconfig already exists."
+    [ -e "~/.config/nvim" ] && die "~/.config/nvim already exists."
 
-    cd "$INSTALL_TO"
+    cd "~/.config"
     git clone https://github.com/Flo-mrt/myconfig.git
-    cd myconfig
 
     # Symlink ~/.vim and ~/.vimrc
     cd ~
-    ln -s "$INSTALL_TO/myconfig/vimrc" ~/.vimrc
-    ln -s "$INSTALL_TO/myconfig/vim" ~/.vim
-    ln -s "$INSTALL_TO/myconfig/fish" ~/.config/fish
-    ln -s "$INSTALL_TO/myconfig/omf" ~/.config/omf
-    ln -s "$INSTALL_TO/myconfig/i3" ~/.config/i3
-    ln -s "$INSTALL_TO/myconfig/polybar" ~/.config/polybar
+    ln -s "~/.config/myconfig/nvim" ~/.config/nvim
+    ln -s "~/.config/myconfig/polybar" ~/.config/polybar
+
+    sudo apt-install fd-find ripgrep neovim
 
     echo "Installed and configured, have fun."
 }
